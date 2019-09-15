@@ -16,7 +16,7 @@ export class AppComponent implements OnInit {
         'username': new FormControl(null, Validators.required),
         'email': new FormControl(null, [Validators.required, Validators.email])
       }),
-      "hobbies": new FormArray(null, Validators.required),
+      "hobbies": new FormArray([], Validators.required),
       'gender': new FormControl('female')
     });
   }
@@ -24,5 +24,8 @@ export class AppComponent implements OnInit {
   onSubmit() {
     console.log(this.signUpForm);
   }
- 
+  onAddHobbies(){
+    const hobbyControl = new FormControl(null, Validators.required);
+    (<FormArray>this.signUpForm.get('hobbies')).push(hobbyControl);
+  }
 }
